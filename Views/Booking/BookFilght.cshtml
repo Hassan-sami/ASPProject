@@ -1,0 +1,166 @@
+﻿@using Booking.viewModel;
+@model BookFlightViewModel
+@{
+    ViewData["Title"] = "BookFilght";
+    Layout = "_BookLayout";
+    ViewBag.User = Model.User;
+    SelectList selectList = new SelectList(Model.Cities, "Name", "Name");
+}
+
+<div class="all-one">
+    <div class="row">
+        <form  id="form" asp-action="BookFilght" asp-controller="Booking">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="text-success col-lg-12" id="myDiv">
+
+                @TempData["Success"]
+
+            </div>
+            <div class="text-danger col-lg-12" id="Erorr">
+
+
+                @TempData["Fail"]
+
+            </div>
+            <div class="radios col-lg-12">
+                @* <label for="one">Round Trip</label>
+                <input class="heading" checked type="radio" name="o3e" id="one">
+                <label for="two">One Way</label>
+                <input type="radio" name="o3e" id="two">
+                <label for="three">Multi City</label>
+                <input type="radio" name="o3e" id="three" />*@
+                <input type="radio" name="options" value="RoundTrip" id="option1" checked>
+                <label for="option1">Round</label>
+                <br>
+                <input type="radio" name="options" value="OneWayTrip" id="option2">
+                <label for="option2">One way</label>
+
+
+            </div>
+
+            <div class="fly col-lg-12">
+                <div class="row" id="main">
+
+                    <div class="one col-lg-6">
+                        <label asp-for="From"></label>
+                        <select class="form-select" asp-for="From" asp-items="selectList">
+                            <option value="SelectCity">Select city</option>
+
+                        </select>
+                    </div>
+                    <div class="two col-lg-6">
+                        <label asp-for="To"></label>
+                        <select class="form-select" asp-for="To" asp-items="selectList">
+                            <option value="SelectCity">Select city</option>
+
+                        </select>
+                    </div>
+
+
+
+                    <div class="three col-lg-6">
+                        <label asp-for="DepartingDate"></label>
+                        <input type="date" asp-for="DepartingDate" value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" placeholder="Pick a data">
+                    </div>
+
+                    <div class="four col-lg-6" id="returning">
+                        <label asp-for="ReturningDate"></label>
+                        <input type="date" asp-for="ReturningDate" value="@DateTime.Now.Date.AddDays(7).ToString("yyyy-MM-dd")" placeholder="Pick a data">
+                    </div>
+
+                    <div class="five col-lg-4">
+                        <label asp-for="NoOfAdult"></label>
+                        <select class="form-select" asp-for="NoOfAdult">
+                            <option value="1" selected>1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="six col-lg-4">
+                        <label asp-for="NoOfChildern"></label>
+                        <select class="form-select" asp-for="NoOfChildern">
+                            <option value="0" selected>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="seven col-lg-4">
+                        <label asp-for="NoOfInfant"></label>
+                        <select class="form-select" asp-for="NoOfInfant">
+                            <option value="0" selected>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="save col-lg-3">
+                        <input type="submit" value="Book">
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        var myDiv = document.getElementById("myDiv");
+
+        // Function to remove text after a specified time (in milliseconds)
+        function removeText() {
+            myDiv.innerText = ""; // Remove the text content
+        }
+
+        // Set a timeout to call the removeText function after 3 seconds (3000 milliseconds)
+        setTimeout(removeText, 3000);
+    </script>
+    <script>
+        var Div = document.getElementById("Erorr");
+
+        // Function to remove text after a specified time (in milliseconds)
+        function removeText() {
+            Div.innerText = ""; // Remove the text content
+        }
+
+        // Set a timeout to call the removeText function after 3 seconds (3000 milliseconds)
+        setTimeout(removeText, 3000);
+    </script>
+
+    <script>
+        // Get reference to the radio buttons
+        // Get reference to the radio buttons
+        var option1 = document.getElementById('option1');
+        var option2 = document.getElementById('option2');
+        var returning = document.getElementById("returning");
+
+        var content = returning.innerHTML;
+        // Function to handle the radio button selection
+        function handleRadioChange(event) {
+            if (event.target.checked) {
+                // Perform action based on the selected radio button
+
+                if (event.target.value === "RoundTrip") {
+                    returning.innerHTML = content;
+                    
+
+                } else {
+                    returning.innerHTML = "";
+                    
+                }
+                // You can call other functions or perform any action here
+            }
+        }
+
+        // Add event listeners to the radio buttons
+        option1.addEventListener('change', handleRadioChange);
+        option2.addEventListener('change', handleRadioChange);
+
+    </script>
+
+
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <partial name="_ValidationScriptsPartial">
+}
+

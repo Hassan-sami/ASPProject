@@ -1,0 +1,149 @@
+﻿@model Booking.viewModel.IndexViewModel
+@{
+    ViewData["Title"] = "Index";
+    ViewBag.User = Model.User;
+}
+
+
+
+<!-- Start Landing -->
+<div id="carouselExampleDark" class="carousel carousel-dark slide">
+    <div class="container-fluid">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active bg-white" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2" class="bg-white"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3" class="bg-white"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="10000">
+                <img src="/img/slide.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <a asp-action="BookHotel" asp-controller="Booking" asp-route-cityName="London" asp-route-hotelName="Shangri-La The Shard">
+                        <img src="/img/logo.png" alt="">
+                    </a>
+                    <h2>LONDON</h2>
+                    
+                    <a class="but" asp-action="BookHotel" asp-controller="Booking" asp-route-cityName="London" asp-route-hotelName="Shangri-La The Shard">LEARN MORE</a>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="/img/slide1.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <a asp-action="BookHotel" asp-controller="Booking" asp-route-cityName="Paris" asp-route-hotelName="Hotel Joke - Astotel">
+                        <img src="/img/logo.png" alt="">
+                    </a>
+                    <h2>PARIS</h2>
+                    
+                    <a class="but" asp-action="BookHotel" asp-controller="Booking" asp-route-cityName="Paris" asp-route-hotelName="Hotel Joke - Astotel">LEARN MORE</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/img/slide2.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <a asp-action="BookHotel" asp-controller="Booking" asp-route-cityName="Venice" asp-route-hotelName="Palazzo Veneziano">
+                        <img src="/img/logo.png" alt="">
+                    </a>
+                    <h2>VENICE</h2>
+                    
+                    <a class="but" asp-action="BookHotel" asp-controller="Booking" asp-route-cityName="Venice" asp-route-hotelName="Palazzo Veneziano">LEARN MORE</a>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<!-- End Landing -->
+
+
+<!-- Start Gallery -->
+<div class="gallerys">
+    <div class="container-fluid">
+        <div class="row">
+            <h2>Top Hotels</h2>
+            <div class="tophotels">
+                <div class="row">
+                    @foreach(var hotel in Model.Hotels)
+                    {
+                        <div class="photo col-lg-3 col-md-6">
+                            <a  asp-action="BookHotel" asp-controller="Booking" asp-route-cityName = "@hotel.City.Name" asp-route-hotelName = "@hotel.Name"><img src="/img/@hotel.Image" alt=""></a>
+                            <div class="HotelName">
+                                <h3>@hotel.Name</h3>
+                                <h5>@hotel.City.Name</h5>
+                            </div>
+                        </div>
+                    }
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- End Gallery -->
+
+<!-- Start trip planner -->
+<div class="trip">
+    <div class="container-fluid">
+        <div class="row">
+            <h2>Quick and easy trip planner</h2>
+            <p>Explore the top cities in Europe</p>
+            @{
+                foreach (var top in Model.TopCities)
+                {
+                    <div class="cities col-lg-3 col-md-6">
+                        <a  asp-action="GetCityHotels" asp-controller="Home" asp-route-cityId = "@top.Id">
+                            <img src="/img/@top.Image" >
+                        </a>
+                        <div class="info">
+                            <h3>@top.Name, @top.Country.Name</h3>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</div>
+
+<!-- End trip planner -->
+
+<!-- Start Explore -->
+<div class="explore">
+    <div class="container-fluid">
+        <div class="row">
+            <h2>Explore Europe</h2>
+            <p>Explore your own trip</p>
+            @{
+                foreach (var city in Model.Cities) 
+                {
+                    <div class="cities col-lg-3 col-md-6">
+                        <a asp-action="GetCityHotels" asp-controller="Home" asp-route-cityId="@city.Id">
+                            <img src="/img/@city.Image" >
+                        </a>
+                        <div class="info">
+                            <h3>@city.Name, @city.Country.Name</h3>
+                        </div>
+                    </div>
+                }
+            }
+           
+ 
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Explore -->
+@section Style {
+    
+        <link rel="stylesheet" href="/css/style.css">
+    
+}

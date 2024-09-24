@@ -1,0 +1,89 @@
+﻿@using Booking.viewModel;
+@model BookFlightViewModel
+@{
+    SelectList selectList = new SelectList(Model.Cities, "Name", "Name");
+
+}
+
+<div class="radios col-lg-12">
+    @* <label for="one">Round Trip</label>
+    <input class="heading" checked type="radio" name="o3e" id="one">
+    <label for="two">One Way</label>
+    <input type="radio" name="o3e" id="two">
+    <label for="three">Multi City</label>
+    <input type="radio" name="o3e" id="three" />*@
+    <input type="radio" name="options" value="RoundTrip" id="option1" >
+    <label for="option1">Round</label>
+    <br>
+    <input type="radio" name="options" value="OneWayTrip" id="option2" checked>
+    <label for="option2">One way</label>
+
+
+</div>
+
+<div class="fly col-lg-12">
+    <div class="row" id="main">
+
+        <div class="one col-lg-6">
+            <label asp-for="From"></label>
+            <select class="form-select" asp-for="From" asp-items="selectList">
+                <option value="SelectCity">Select city</option>
+
+            </select>
+        </div>
+        <div class="two col-lg-6">
+            <label asp-for="To"></label>
+            <select class="form-select" asp-for="To" asp-items="selectList">
+                <option value="SelectCity">Select city</option>
+
+            </select>
+        </div>
+
+
+
+        <div class="three col-lg-6">
+            <label asp-for="DepartingDate"></label>
+            <input type="date" asp-for="DepartingDate" value="@DateTime.Now" placeholder="Pick a data">
+        </div>
+
+        <div class="four col-lg-6">
+            <label asp-for="ReturningDate"></label>
+            <input type="date" asp-for="ReturningDate" value="@DateTime.Now" placeholder="Pick a data">
+        </div>
+
+
+
+
+
+
+        <div class="five col-lg-4">
+            <label asp-for="NoOfAdult"></label>
+            <select class="form-select" asp-for="NoOfAdult">
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+        <div class="six col-lg-4">
+            <label asp-for="NoOfChildern"></label>
+            <select class="form-select" asp-for="NoOfChildern">
+                <option value="0" selected>0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+        <div class="seven col-lg-4">
+            <label asp-for="NoOfInfant"></label>
+            <select class="form-select" asp-for="NoOfInfant">
+                <option value="0" selected>0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+        <div class="save col-lg-3">
+            <input type="submit" value="ADD">
+        </div>
+    </div>
+</div>

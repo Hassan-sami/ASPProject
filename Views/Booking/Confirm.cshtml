@@ -1,0 +1,104 @@
+﻿@using Booking.viewModel;
+@model ConfirmationViewModel
+
+@{
+    ViewData["Title"] = "Confirm";
+    Layout = "~/Views/Shared/_BookLayout.cshtml";
+    ViewBag.User = Model.User;
+    var totlPrice = Model.Trip.PricePerAdult * Model.UserTrip.NoOfAdults + Model.Trip.PricePerChild * Model.UserTrip.NoOfChildern;
+   
+    var Data = new Dictionary<string, string>
+    {
+        { "UserId", Model.User.Id },
+        { "TripId", $"{Model.Trip.Id}" },
+        {"NoOfAdults",$"{Model.UserTrip.NoOfAdults}"},
+        {"NoOfChildern",$"{Model.UserTrip.NoOfChildern}"},
+        {"NoOfInfant",$"{Model.UserTrip.NoOfInfant}"},
+        {"DepartingDate",$"{Model.UserTrip.DepartingDate}"},
+        {"ReturningDate",$"{Model.UserTrip.ReturningDate}"},
+
+
+    };
+
+}
+
+
+
+<div class="all-one">
+    <div class="row">
+        <form  id="form" asp-action="Confirm" asp-controller="Booking" asp-all-route-data="Data">
+
+
+
+            <div class="fly col-lg-12">
+                <div class="row" id="main">
+
+                    <div class="one col-lg-6">
+                        <label>Name</label>
+
+                    </div>
+                    <div class="two col-lg-6">
+
+                        <label>@Model.User.FirstName</label>
+
+                    </div>
+                    <div class="three col-lg-6">
+                        <label>From</label>
+                    </div>
+
+                    <div class="four col-lg-6" id="returning">
+                        <label>@Model.Trip.From</label>
+                    </div>
+
+                    <div class="five col-lg-6">
+                        <label>To</label>
+                    </div>
+                    <div class="six col-lg-6">
+                        <label>@Model.Trip.To</label>
+                    </div>
+                    <div class="seven col-lg-6">
+                        <label>Total price</label>
+                    </div>
+                    
+                    <div class="seven col-lg-6">
+                        <label>@totlPrice$</label>
+                    </div>
+                    <div class="seven col-lg-6">
+                        <label>Departing date</label>
+                    </div>
+
+                    <div class="seven col-lg-6">
+                        <label>@Model.UserTrip.DepartingDate.Date.ToString("yyyy-MM-dd")</label>
+                    </div>
+                    @{
+                        if(Model.Trip.IsRoundTrip)
+                        {
+                            <div class="seven col-lg-6">
+                                <label>Returning date</label>
+                            </div>
+
+                            <div class="seven col-lg-6">
+                                <label>@Model.UserTrip.ReturningDate.Date.ToString("yyyy-MM-dd")</label>
+                            </div>
+                        }
+                    }
+                    <div class="save col-lg-3">
+                        <input type="submit" value="Confirm">
+                    </div>
+                    <div class="save col-lg-3">
+                        
+                    </div>
+                    <div class="seven col-lg-6">
+                        <label><a asp-action="BookFilght" asp-controller="Booking">Go Back</a></label>
+                    </div>
+                    
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+

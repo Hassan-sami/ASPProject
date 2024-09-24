@@ -1,0 +1,51 @@
+﻿@model Booking.viewModel.UserRoleViewModel
+@{
+    
+    ViewData["Title"] = "AddRole";
+    Layout = "~/Views/Shared/_RegisterLayout.cshtml";
+    
+}
+
+<div class="box-two">
+    <form asp-action="AddRole" asp-controller="Role">
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <label class="l-1" asp-for="Email"></label> <br>
+        <input class="text" asp-for="Email">
+        <span asp-validation-for="Email" class="text-danger"></span>
+
+
+        <label class="l-1" asp-for="Roles"></label> <br>
+        <select class="form-select" asp-for="RoleName" >
+            <option value="nono" >Select a Role</option>
+            @{
+                foreach(var role in Model.Roles)
+                {
+                    if (Model.RoleName == role)
+                    {
+                        <option value="@role" selected >@role</option>
+                    }
+                    else
+                    {
+                        <option value="@role" >@role</option>
+                    }
+                }
+            }
+        </select>
+        <span asp-validation-for="Roles" class="text-danger"></span>
+
+
+
+        <input class="sub" type="submit" value="assign Role">
+
+
+    </form>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

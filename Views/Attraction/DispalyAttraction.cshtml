@@ -1,0 +1,41 @@
+﻿@using Booking.viewModel;
+@model AttractionViewModel
+@{
+    ViewData["Title"] = "DispalyAttraction";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.User = Model.User;
+}
+
+<div class="gallerys">
+    <div class="container-fluid">
+        <div class="row">
+            <h2>top and highest rated hotels in Europe</h2>
+            <p>A mix of charming, modern, tried and trusted hotels.</p>
+            <div class="tophotels">
+                <div class="row">
+                    @foreach(var hotel in Model.TopHotels){
+
+                    <div class="photo col-lg-3 col-md-6">
+                        <a href="#"><img src="/img/@hotel.Image" alt=""></a>
+                        <div class="HotelName">
+                            <h3>@hotel.Name</h3>
+                                @for (int i = 1; i <= hotel.StarsNo; i++)
+                                {
+                                    <i class="fa fa-star fa-1x checked"></i>
+                                }
+
+                            <h5>@hotel.City.Name</h5>
+                        </div>
+                    </div>
+                   }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Style {
+    <link rel="stylesheet" href="/css/attractions.css">
+}
+

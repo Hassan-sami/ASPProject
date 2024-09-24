@@ -1,0 +1,38 @@
+﻿
+@model Booking.viewModel.SignInViewModel
+
+@{
+    Layout = "_RegisterLayout";
+    ViewData["Title"] = "SignIn";
+}
+
+<div class="box-two">
+    <form asp-action="LogIn" asp-controller="Account">
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <label class="l-1" asp-for="Email"></label> <br>
+        <input class="text" asp-for="Email">
+        <span asp-validation-for="Email" class="text-danger"></span>
+
+        <label class="l-2" asp-for="Password"></label> <br>
+        <input class="pass" asp-for="Password">
+        <span asp-validation-for="Password" class="text-danger"></span> <br>
+
+        <input class="ch" type="checkbox" asp-for="RememberMe">
+        <label class="l-3" asp-for="RememberMe"></label> 
+        <span asp-validation-for="RememberMe" class="text-danger"></span> 
+
+        <a class="goo" href="index.html">Forgot Password ?</a>
+        <input class="sub" type="submit" value=" Sign in">
+
+        <p>New member? <a asp-action="Register" asp-controller="Account">Create an account</a></p>
+    </form>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

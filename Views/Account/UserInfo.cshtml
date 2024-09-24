@@ -1,0 +1,92 @@
+﻿@using Booking.Models.Data;
+@model User;
+
+@{
+    ViewData["Title"] = "UserInfo";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    ViewBag.User = Model;
+}
+
+<div class="page d-flex">
+    <div class="content w-full">
+        <!-- Start Head  -->
+        <!-- End Head  -->
+        <div class="profile-page m-20">
+            <!-- Start Overviwe -->
+            <div class="overview bg-white red-10 d-flex align-center">
+                <div class="avatar-box txt-c p-20">
+                    <img class="red-50 mb-10" src="img/l" alt="">
+                    <h3 class="m-0">Name</h3>
+                    <button class="edit red-6">Change</button>
+                    <button class="edit no red-6">Save</button>
+                </div>
+                <div class="info-box w-full txt-c-mobile">
+                    <!-- Start Information Row -->
+                    <div class="box p-20 d-flex align-center">
+                        <h4 class="c-grey fs-15 m-0 w-full">General Information</h4>
+                        <div class="fs-14">
+                            <span class="c-grey">First Name:</span>
+                            <input type="text" disabled asp-for="FirstName">
+                        </div>
+                        <div class="fs-14">
+                            <span class="c-grey">Last Name:</span>
+                            <input type="text" disabled asp-for="LastName">
+                        </div>
+                      
+                    </div>
+                    <!-- End Information Row -->
+                    <!-- Start Information Row -->
+                    <div class="box p-20 d-flex align-center">
+                        <h4 class="c-grey fs-15 m-0 w-full">Personal Information</h4>
+                        <div class="fs-14">
+                            <span class="c-grey">Email:</span>
+                            <input type="email" disabled asp-for="Email">
+                        </div>
+                       
+                    </div>
+                    <!-- End Information Row -->
+                    <!-- Start Information Row -->
+                    @*<div class="box p-20 d-flex align-center">
+                        <h4 class="c-grey fs-15 m-0 w-full">Job Information</h4>
+                        <div class="fs-14">
+                            <span class="c-grey">Title:</span>
+                            <input type="text" disabled>
+                        </div>
+                        <div class="fs-14">
+                            <span class="c-grey">Years Of Experience:</span>
+                            <input type="text" disabled>
+                        </div>
+                    </div>*@
+                    <!-- End Information Row -->
+                    <!-- Start Information Row -->
+                    <div class="box p-20 d-flex align-center">
+                        <h4 class="c-grey fs-15 m-0 w-full">Information</h4>
+                        <div class="fs-14">
+                            <span class="c-grey">Payment Method:</span>
+                            <input type="text" disabled>
+                        </div>
+                        <div class="fs-14">
+                            <span class="c-grey">Password:</span>
+                            <input type="password" disabled >
+                            <a asp-action="ChangePassword" asp-controller="Account"><i class="fa-solid fa-circle-exclamation"></i></a>
+                        </div>
+                    </div>
+                    <!-- End Information Row -->
+                </div>
+            </div>
+            <!-- End Overviwe -->
+        </div>
+    </div>
+</div>
+
+
+
+ @section Scripts{
+    <script src="/js/user.js"></script>
+ }       
+ 
+
+@section Style {
+    <link rel="stylesheet" href="/css/framework.css">
+    <link rel="stylesheet" href="/css/user.css">
+}

@@ -1,0 +1,82 @@
+﻿   <!-- Start Header -->
+<nav class="navbar nav-one navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand links" asp-action="Index" asp-controller="Home">
+            <img src="/img/Logo-pdf.png" alt="" class="image">
+            <span>
+                CRAZY TRIP
+            </span>
+        </a>
+        <div class="navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                @{
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-action="UserInfo" asp-controller="Account">hello, @ViewBag.User.FirstName</a>
+                        <a asp-action="LogOut" asp-controller="Account">sign out</a>
+                    }
+                    else
+                    {
+                        <a asp-action="Register" asp-controller="Account">Register</a>
+                        <a asp-action="LogIn" asp-controller="Account">Login</a>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Start Nav Two -->
+<nav class="navbar nav-one nav-two navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav nav-me">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" asp-action="Index" asp-controller="Home"><i class="fa-solid fa-hotel"></i>Stays</a>
+                </li>
+                <li class="nav-item">
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            <a class="nav-link" asp-action="BookFilght" asp-controller="Booking"><i class="fa-solid fa-plane"></i>Flights</a>
+                        }
+                        else
+                        {
+                            <a class="nav-link" asp-action="LogIn" asp-controller="Account"><i class="fa-solid fa-plane"></i>Flights</a>
+
+                        }
+                    }
+                </li>
+                <li class="nav-item">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="nav-link" asp-action="DispalyAttraction" asp-controller="Attraction"><i class="fa-solid fa-braille"></i>Attractions</a>
+                    }
+                    else
+                    {
+                        <a class="nav-link" asp-action="LogIn" asp-controller="Account"><i class="fa-solid fa-plane"></i>Attractions</a>
+
+                    }
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa-solid fa-ticket"></i>Your Ticket</a>
+                </li>
+                <li class="nav-item">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="nav-link" asp-action="ContactUs" asp-controller="Home"><i class="fa-solid fa-address-book"></i>Contact Us</a>
+                    }
+                    else
+                    {
+                        <a class="nav-link" asp-action="LogIn" asp-controller="Account"><i class="fa-solid fa-plane"></i>Contact Us</a>
+
+                    }
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- End Nav Two -->
+<!-- End Header -->

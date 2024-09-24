@@ -1,0 +1,31 @@
+﻿@using Booking.Models.Data;
+@model User
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.User = Model;
+}
+
+
+<div class="contact">
+    <div class="overlay"></div>
+    <div class="container">
+        <h2>Contact Us</h2>
+        <form action="">
+            <div class="left">
+                <input type="text" name="Your Name" placeholder="Your Name">
+                <input type="number" name="Your Number" placeholder="Your Phoen">
+                <input type="email" name="Your mail" placeholder="Your Email">
+                <input type="text" name="Your Sub" placeholder="Your Subject">
+            </div>
+            <div class="right">
+                <textarea name="Message" placeholder="Your Message"></textarea>
+                <input type="submit" value="Send" class="submit">
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Style {
+    <link rel="stylesheet" href="/css/contact.css">
+}

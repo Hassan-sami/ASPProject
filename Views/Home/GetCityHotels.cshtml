@@ -1,0 +1,58 @@
+﻿@using Booking.viewModel;
+@model HotelViewModel
+@{
+    ViewData["Title"] = "GetCityHotels";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.User = Model.User;
+}
+
+
+
+<!-- Start City Hotels -->
+
+<div class="CityHotels">
+    <div class="container-fluid">
+        <div class="row">
+            <h2>Top Hotels in @Model.City.Name, @Model.City.Country.Name</h2>
+            <div class="topcityhotels">
+                <div class="row">
+                    @{
+                        foreach (var hotel in Model.Hotels)
+                        {
+                            <div class="HotelLink col-lg-3 col-md-6">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a asp-action="BookHotel" asp-controller="Booking" asp-route-cityName = "@Model.City.Name" asp-route-hotelName = "@hotel.Name">
+
+                                        <img src="/img/@hotel.Image">
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-action="Index" asp-controller="Home" asp-route-cityName="@Model.City.Name" asp-route-hotelName="@hotel.Name">
+
+                                        <img src="/img/@hotel.Image">
+                                    </a>
+                                }
+                                <div class="HotelDescription">
+                                    <h3>@hotel.Name</h3>
+                                    <div class="Stars">
+                                    @for(int i = 1; i<= hotel.StarsNo;i++)
+                                    {
+                                        <i class="fa fa-star fa-1x checked" ></i>
+                                     }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End City Hotels -->
+@section Style {
+
+    <link rel="stylesheet" href="/css/londonhotels.css">
+}

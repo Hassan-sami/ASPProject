@@ -1,0 +1,15 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+
+  },
+  "AllowedHosts": "*",
+  
+  "ConnectionStrings": {
+    "default": "Server=.;Database=Book;Trusted_Connection=True"
+  }
+
+}

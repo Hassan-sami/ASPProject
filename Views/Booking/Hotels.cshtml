@@ -1,0 +1,10 @@
+﻿@using Booking.Models.Data;
+@model List<Hotel>
+
+
+@{
+    foreach(var hotel in Model)
+    {
+        <option value="@hotel.Name">@hotel.Name</option>
+    }
+}
